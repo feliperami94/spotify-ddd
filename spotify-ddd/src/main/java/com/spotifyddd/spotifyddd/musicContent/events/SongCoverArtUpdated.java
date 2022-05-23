@@ -21,7 +21,7 @@ public class SongCoverArtUpdated extends DomainEvent {
         return songID;
     }
 
-    public CoverArt getCoverArt() {
+    public CoverArt getSongCoverArt() {
         return coverArt;
     }
 

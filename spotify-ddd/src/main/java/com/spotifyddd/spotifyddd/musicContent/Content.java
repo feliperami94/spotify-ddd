@@ -18,12 +18,12 @@ public class Content extends AggregateEvent<ContentID> {
 
     public Content(ContentID contentID, Link link) {
         super(contentID);
-        appendChange(new MusicContentAdded(link)).apply();
+        appendChange(new ContentAdded(link)).apply();
     }
 
     private Content(ContentID contentID){
         super(contentID);
-        subscribe(new MusicContentChange(this));
+        subscribe(new ContentChange(this));
     }
 
     public static Content from(ContentID contentID, List<DomainEvent> events){
@@ -63,7 +63,7 @@ public class Content extends AggregateEvent<ContentID> {
         appendChange(new PodcastEpisodeAdded(podcastEpisodeID, podcastEpisodeTitle, coverArt)).apply();
     }
 
-    public void updatePodcastTitle(PodcastEpisodeID podcastEpisodeID, PodcastEpisodeTitle podcastEpisodeTitle,){
+    public void updatePodcastTitle(PodcastEpisodeID podcastEpisodeID, PodcastEpisodeTitle podcastEpisodeTitle){
         Objects.requireNonNull(podcastEpisodeID);
         Objects.requireNonNull(podcastEpisodeTitle);
         appendChange(new PodcastTitleUpdated(podcastEpisodeID, podcastEpisodeTitle)).apply();
@@ -83,7 +83,7 @@ public class Content extends AggregateEvent<ContentID> {
                 .findFirst();
     }
 
-    protected Optional<PodcastEpisode> getPodcastEpisode(PodcastEpisodeID podcastEpisodeID){
+    protected Optional<PodcastEpisode> getPodcastEpisodeByID(PodcastEpisodeID podcastEpisodeID){
         return podcastEpisodes()
                 .stream()
                 .filter(podcastEpisode -> podcastEpisode.identity().equals(podcastEpisodeID))
