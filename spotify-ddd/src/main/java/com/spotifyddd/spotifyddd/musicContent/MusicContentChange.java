@@ -1,4 +1,8 @@
 package com.spotifyddd.spotifyddd.musicContent;
 
-public class MusicContentChange {
+import co.com.sofka.domain.generic.EventChange;
+
+public class MusicContentChange extends EventChange {
+
+
 }

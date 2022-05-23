@@ -2,17 +2,8 @@ package com.spotifyddd.spotifyddd.musicContent;
 
 import co.com.sofka.domain.generic.AggregateEvent;
 import co.com.sofka.domain.generic.DomainEvent;
-import com.spotifyddd.spotifyddd.creatorAccount.ArtistAccount;
-import com.spotifyddd.spotifyddd.creatorAccount.ArtistInfo;
-import com.spotifyddd.spotifyddd.creatorAccount.CreatorAccount;
-import com.spotifyddd.spotifyddd.creatorAccount.CreatorAccountChange;
-import com.spotifyddd.spotifyddd.creatorAccount.events.*;
-import com.spotifyddd.spotifyddd.creatorAccount.values.*;
-import com.spotifyddd.spotifyddd.generics.Country;
-import com.spotifyddd.spotifyddd.generics.Email;
-import com.spotifyddd.spotifyddd.generics.Password;
-import com.spotifyddd.spotifyddd.musicContent.values.Link;
-import com.spotifyddd.spotifyddd.musicContent.values.MusicContentID;
+import com.spotifyddd.spotifyddd.musicContent.events.*;
+import com.spotifyddd.spotifyddd.musicContent.values.*;
 
 import java.util.List;
 import java.util.Objects;
@@ -27,86 +18,87 @@ public class MusicContent extends AggregateEvent<MusicContentID> {
 
     public MusicContent(MusicContentID musicContentID, Link link) {
         super(musicContentID);
-        appendChange(new MusicContentCreated(biography)).apply();
+        appendChange(new MusicContentAdded(link)).apply();
     }
 
-    private CreatorAccount(CreatorID creatorID){
-        super(creatorID);
-        subscribe(new CreatorAccountChange(this));
+    private MusicContent(MusicContentID musicContentID){
+        super(musicContentID);
+        subscribe(new MusicContentChange(this));
     }
 
-    public static CreatorAccount from(CreatorID creatorID, List<DomainEvent> events){
-        var creatorAccount = new CreatorAccount(creatorID);
-        events.forEach(creatorAccount::applyEvent);
-        return creatorAccount;
+    public static MusicContent from(MusicContentID musicContentID, List<DomainEvent> events){
+        var musicContent = new MusicContent(musicContentID);
+        events.forEach(musicContent::applyEvent);
+        return musicContent;
     }
 
-    public void updateBiography(Biography biography){
-        Objects.requireNonNull(biography);
-        appendChange(new BiographyUpdated(biography)).apply();
+    public void updateLink(Link link){
+        Objects.requireNonNull(link);
+        appendChange(new LinkUpdated(link)).apply();
     }
 
-    public void addArtistInfo(ArtistInfoID artistID, ArtistName artistName, Country artistCountry){
-        Objects.requireNonNull(artistID);
-        Objects.requireNonNull(artistName);
-        Objects.requireNonNull(artistCountry);
-        appendChange(new ArtistInfoAdded(artistID, artistName, artistCountry)).apply();
+    public void addSong(SongID songID, SongName songName, CoverArt coverArt){
+        Objects.requireNonNull(songID);
+        Objects.requireNonNull(songName);
+        Objects.requireNonNull(coverArt);
+        appendChange(new SongAdded(songID, songName, coverArt)).apply();
     }
 
-    public void updateArtistName(ArtistInfoID artistInfoID, ArtistName artistName){
-        Objects.requireNonNull(artistInfoID);
-        Objects.requireNonNull(artistName);
-        appendChange(new ArtistNameUpdated(artistInfoID, artistName)).apply();
+    public void updateSongName(SongID songID, SongName songName){
+        Objects.requireNonNull(songID);
+        Objects.requireNonNull(songName);
+        appendChange(new SongNameUpdated(songID, songName)).apply();
     }
 
-    public void updateArtistCountry(ArtistInfoID artistInfoID, Country artistCountry){
-        Objects.requireNonNull(artistInfoID);
-        Objects.requireNonNull(artistCountry);
-        appendChange(new ArtistCountryUpdated(artistInfoID, artistCountry)).apply();
+    public void updateSongCoverArt(SongID songID, CoverArt coverArt){
+        Objects.requireNonNull(songID);
+        Objects.requireNonNull(coverArt);
+        appendChange(new SongCoverArtUpdated(songID, coverArt)).apply();
     }
 
-    public void addArtistAccount(ArtistAccountID artistAccountID, Email artistEmail, Password artistPassword){
-        Objects.requireNonNull(artistAccountID);
-        Objects.requireNonNull(artistEmail);
-        Objects.requireNonNull(artistPassword);
-        appendChange(new ArtistAccountAdded(artistAccountID, artistEmail, artistPassword)).apply();
+    public void addPodcastEpisode(PodcastEpisodeID podcastEpisodeID, PodcastEpisodeTitle podcastEpisodeTitle, CoverArt coverArt){
+        Objects.requireNonNull(podcastEpisodeID);
+        Objects.requireNonNull(podcastEpisodeTitle);
+        Objects.requireNonNull(coverArt);
+        appendChange(new PodcastEpisodeAdded(podcastEpisodeID, podcastEpisodeTitle, coverArt)).apply();
     }
 
-    public void updateArtistEmail(ArtistAccountID artistAccountID, Email artistEmail){
-        Objects.requireNonNull(artistAccountID);
-        Objects.requireNonNull(artistEmail);
-        appendChange(new ArtistEmailUpdated(artistAccountID, artistEmail)).apply();
+    public void updatePodcastTitle(PodcastEpisodeID podcastEpisodeID, PodcastEpisodeTitle podcastEpisodeTitle,){
+        Objects.requireNonNull(podcastEpisodeID);
+        Objects.requireNonNull(podcastEpisodeTitle);
+        appendChange(new PodcastTitleUpdated(podcastEpisodeID, podcastEpisodeTitle)).apply();
     }
 
-    public void updateArtistPassword(ArtistAccountID artistAccountID, Password artistPassword){
-        Objects.requireNonNull(artistAccountID);
-        Objects.requireNonNull(artistPassword);
-        appendChange(new ArtistPasswordUpdated(artistAccountID, artistPassword)).apply();
+    public void updatePodcastCoverArt(PodcastEpisodeID podcastEpisodeID, CoverArt coverArt){
+        Objects.requireNonNull(podcastEpisodeID);
+        Objects.requireNonNull(coverArt);
+        appendChange(new PodcastCoverArtUpdated(podcastEpisodeID, coverArt)).apply();
     }
 
-    protected Optional<ArtistInfo> getArtistInfoByID(ArtistInfoID artistInfoID){
-        return artistInfos()
+
+    protected Optional<Song> getSongById(SongID songID){
+        return songs()
                 .stream()
-                .filter(artistInfo -> artistInfo.identity().equals(artistInfoID))
+                .filter(song -> song.identity().equals(songID))
                 .findFirst();
     }
 
-    protected Optional<ArtistAccount> getArtistAccountByID(ArtistAccountID artistAccountID){
-        return artistAccounts()
+    protected Optional<PodcastEpisode> getPodcastEpisode(PodcastEpisodeID podcastEpisodeID){
+        return podcastEpisodes()
                 .stream()
-                .filter(artistAccount -> artistAccount.identity().equals(artistAccountID))
+                .filter(podcastEpisode -> podcastEpisode.identity().equals(podcastEpisodeID))
                 .findFirst();
     }
 
-    public Biography biography() {
-        return biography;
+    public Link link() {
+        return link;
     }
 
-    public Set<ArtistInfo> artistInfos() {
-        return artistInfos;
+    public Set<Song> songs() {
+        return songs;
     }
 
-    public Set<ArtistAccount> artistAccounts() {
-        return artistAccounts;
+    public Set<PodcastEpisode> podcastEpisodes() {
+        return podcastEpisodes;
     }
 }
