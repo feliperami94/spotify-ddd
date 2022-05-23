@@ -10,24 +10,24 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
-public class MusicContent extends AggregateEvent<MusicContentID> {
+public class Content extends AggregateEvent<ContentID> {
 
     protected Link link;
     protected Set<Song> songs;
     protected Set<PodcastEpisode> podcastEpisodes;
 
-    public MusicContent(MusicContentID musicContentID, Link link) {
-        super(musicContentID);
+    public Content(ContentID contentID, Link link) {
+        super(contentID);
         appendChange(new MusicContentAdded(link)).apply();
     }
 
-    private MusicContent(MusicContentID musicContentID){
-        super(musicContentID);
+    private Content(ContentID contentID){
+        super(contentID);
         subscribe(new MusicContentChange(this));
     }
 
-    public static MusicContent from(MusicContentID musicContentID, List<DomainEvent> events){
-        var musicContent = new MusicContent(musicContentID);
+    public static Content from(ContentID contentID, List<DomainEvent> events){
+        var musicContent = new Content(contentID);
         events.forEach(musicContent::applyEvent);
         return musicContent;
     }

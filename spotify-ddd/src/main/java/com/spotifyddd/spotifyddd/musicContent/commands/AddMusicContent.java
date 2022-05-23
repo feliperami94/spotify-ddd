@@ -1,22 +1,20 @@
 package com.spotifyddd.spotifyddd.musicContent.commands;
 
 import co.com.sofka.domain.generic.Command;
-import com.spotifyddd.spotifyddd.creatorAccount.values.Biography;
-import com.spotifyddd.spotifyddd.creatorAccount.values.CreatorID;
 import com.spotifyddd.spotifyddd.musicContent.values.Link;
-import com.spotifyddd.spotifyddd.musicContent.values.MusicContentID;
+import com.spotifyddd.spotifyddd.musicContent.values.ContentID;
 
 public class AddMusicContent extends Command {
-    private final MusicContentID musicContentID;
+    private final ContentID contentID;
     private final Link link;
 
-    public AddMusicContent(MusicContentID musicContentID, Link link) {
-        this.musicContentID = musicContentID;
+    public AddMusicContent(ContentID contentID, Link link) {
+        this.contentID = contentID;
         this.link = link;
     }
 
-    public MusicContentID getMusicContentID() {
-        return musicContentID;
+    public ContentID getMusicContentID() {
+        return contentID;
     }
 
     public Link getLink() {

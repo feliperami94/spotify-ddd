@@ -2,19 +2,19 @@ package com.spotifyddd.spotifyddd.musicContent.commands;
 
 import co.com.sofka.domain.generic.Command;
 import com.spotifyddd.spotifyddd.musicContent.values.Link;
-import com.spotifyddd.spotifyddd.musicContent.values.MusicContentID;
+import com.spotifyddd.spotifyddd.musicContent.values.ContentID;
 
 public class UpdateLink extends Command {
-    private final MusicContentID musicContentID;
+    private final ContentID contentID;
     private final Link link;
 
-    public UpdateLink(MusicContentID musicContentID, Link link) {
-        this.musicContentID = musicContentID;
+    public UpdateLink(ContentID contentID, Link link) {
+        this.contentID = contentID;
         this.link = link;
     }
 
-    public MusicContentID getMusicContentID() {
-        return musicContentID;
+    public ContentID getMusicContentID() {
+        return contentID;
     }
 
     public Link getLink() {
