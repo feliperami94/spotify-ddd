@@ -1,4 +1,4 @@
 package com.spotifyddd.spotifyddd.musicContent;
 
-public class album {
+public class MusicContentChange {
 }
