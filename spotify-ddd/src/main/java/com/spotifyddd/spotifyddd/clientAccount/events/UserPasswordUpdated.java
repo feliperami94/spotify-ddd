@@ -1,7 +1,7 @@
 package com.spotifyddd.spotifyddd.clientAccount.events;
 
 import co.com.sofka.domain.generic.DomainEvent;
-import com.spotifyddd.spotifyddd.clientAccount.values.Password;
+import com.spotifyddd.spotifyddd.generics.Password;
 import com.spotifyddd.spotifyddd.clientAccount.values.UserAccountID;
 
 public class UserPasswordUpdated extends DomainEvent {

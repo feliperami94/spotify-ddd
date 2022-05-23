@@ -1,9 +1,8 @@
 package com.spotifyddd.spotifyddd.clientAccount.commands;
 
 import co.com.sofka.domain.generic.Command;
-import com.spotifyddd.spotifyddd.clientAccount.values.Country;
+import com.spotifyddd.spotifyddd.generics.Country;
 import com.spotifyddd.spotifyddd.clientAccount.values.UserInfoID;
-import com.spotifyddd.spotifyddd.clientAccount.values.UserName;
 
 public class UpdateCountry extends Command {
 

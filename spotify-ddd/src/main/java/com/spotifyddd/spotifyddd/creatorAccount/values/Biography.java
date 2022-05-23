@@ -1,23 +1,26 @@
-package com.spotifyddd.spotifyddd.clientAccount.values;
+package com.spotifyddd.spotifyddd.creatorAccount.values;
 
 import co.com.sofka.domain.generic.ValueObject;
 
 import java.text.ParseException;
 import java.util.Objects;
-import java.util.regex.Pattern;
 
-public class Password implements ValueObject<String> {
+public class Biography implements ValueObject<String> {
+
     final String value;
 
-    public Password(String value) throws ParseException {
+    public Biography(String value) throws ParseException {
         this.value = Objects.requireNonNull(value);
 
         if(this.value.isBlank()){
-            throw new IllegalArgumentException("The password can't be empty");
+            throw new IllegalArgumentException("The artist biography can't be empty");
         }
 
-        if(this.value.length() < 8){
-            throw new IllegalArgumentException("The password must have 8 characters at least");
+        if(this.value.length() < 50 ){
+            throw new IllegalArgumentException("The biography must have at least 50 characters long");
+        }
+        if(this.value.length() > 5000 ){
+            throw new IllegalArgumentException("The artist biography is too long");
         }
 
     }
@@ -36,7 +39,7 @@ public class Password implements ValueObject<String> {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Password that =  (Password) o;
+        Biography that =  (Biography) o;
         return Objects.equals(value, that.value);
     }
 }

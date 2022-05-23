@@ -1,10 +1,9 @@
 package com.spotifyddd.spotifyddd.clientAccount.events;
 
 import co.com.sofka.domain.generic.DomainEvent;
-import com.spotifyddd.spotifyddd.clientAccount.values.Email;
-import com.spotifyddd.spotifyddd.clientAccount.values.Password;
+import com.spotifyddd.spotifyddd.generics.Email;
+import com.spotifyddd.spotifyddd.generics.Password;
 import com.spotifyddd.spotifyddd.clientAccount.values.UserAccountID;
-import org.springframework.lang.UsesSunHttpServer;
 
 public class UserAccountAdded extends DomainEvent {
     public final UserAccountID userAccountID;

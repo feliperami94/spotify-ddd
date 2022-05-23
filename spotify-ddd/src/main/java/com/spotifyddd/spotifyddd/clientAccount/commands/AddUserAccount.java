@@ -2,6 +2,8 @@ package com.spotifyddd.spotifyddd.clientAccount.commands;
 
 import co.com.sofka.domain.generic.Command;
 import com.spotifyddd.spotifyddd.clientAccount.values.*;
+import com.spotifyddd.spotifyddd.generics.Password;
+import com.spotifyddd.spotifyddd.generics.Email;
 
 public class AddUserAccount extends Command {
     private final UserAccountID userAccountID;

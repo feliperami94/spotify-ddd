@@ -1,8 +1,7 @@
 package com.spotifyddd.spotifyddd.clientAccount.commands;
 
 import co.com.sofka.domain.generic.Command;
-import com.spotifyddd.spotifyddd.clientAccount.values.Email;
-import com.spotifyddd.spotifyddd.clientAccount.values.Password;
+import com.spotifyddd.spotifyddd.generics.Password;
 import com.spotifyddd.spotifyddd.clientAccount.values.UserAccountID;
 
 public class UpdateUserPassword extends Command {

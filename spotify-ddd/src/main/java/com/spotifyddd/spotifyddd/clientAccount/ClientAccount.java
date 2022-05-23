@@ -4,9 +4,10 @@ import co.com.sofka.domain.generic.AggregateEvent;
 import co.com.sofka.domain.generic.DomainEvent;
 import com.spotifyddd.spotifyddd.clientAccount.events.*;
 import com.spotifyddd.spotifyddd.clientAccount.values.*;
-import com.spotifyddd.spotifyddd.musicContent.values.SongID;
+import com.spotifyddd.spotifyddd.generics.Password;
+import com.spotifyddd.spotifyddd.generics.Country;
+import com.spotifyddd.spotifyddd.generics.Email;
 
-import java.lang.reflect.Member;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;

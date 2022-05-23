@@ -1,4 +1,4 @@
-package com.spotifyddd.spotifyddd.clientAccount.values;
+package com.spotifyddd.spotifyddd.generics;
 
 import co.com.sofka.domain.generic.ValueObject;
 

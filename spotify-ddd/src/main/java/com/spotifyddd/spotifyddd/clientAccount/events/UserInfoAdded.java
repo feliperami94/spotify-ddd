@@ -1,7 +1,7 @@
 package com.spotifyddd.spotifyddd.clientAccount.events;
 
 import co.com.sofka.domain.generic.DomainEvent;
-import com.spotifyddd.spotifyddd.clientAccount.values.Country;
+import com.spotifyddd.spotifyddd.generics.Country;
 import com.spotifyddd.spotifyddd.clientAccount.values.UserInfoID;
 import com.spotifyddd.spotifyddd.clientAccount.values.UserName;
 
